@@ -1,0 +1,13 @@
+# conf file must be in same directory as script
+
+[json]
+app_name = Verkada Event Logs
+version = 1.0
+
+[verkada]
+api_url = https://api.verkada.com
+state_dir = ./state
+pid_file = ./verkada.pid
+api_key = 
+org_id = 
+
