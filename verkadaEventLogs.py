@@ -28,7 +28,8 @@ class integration(object):
     JSON_field_mappings = {
         'site' : 'location',
         'name' : 'sensor_name',
-        'notification_type' : 'event_type'
+        'notification_type' : 'event_type',
+        'video_url' : 'url'
     }
 
     def verkada_getCameras(self):
