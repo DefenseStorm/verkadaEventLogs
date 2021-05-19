@@ -22,7 +22,7 @@ filter f_messages { level(info,notice,warn) and not facility(auth,authpriv,cron,
 
   cp verkadaEventLogs.conf.template verkadaEventLogs.conf
 
-  Configure the following in verkadaEventLogs.conf based on Brivo API usage documentation at https://apidocs.brivo.com/
+  Configure the following in verkadaEventLogs.conf based on Verkada documentation
 
 	org_id
 	api_key
