@@ -115,7 +115,7 @@ class integration(object):
                 log['name'] = cameras[log['camera_id']]['name']
                 log['site'] = cameras[log['camera_id']]['site']
                 log['message'] = log['name'] + " - " + log['notification_type']
-                log['timestamp'] = datetime.fromtimestamp(int(log['created'])).strftime("%Y-%m-%dT%H:%M:%SZ")
+                log['timestamp'] = datetime.utcfromtimestamp(int(log['created'])).strftime("%Y-%m-%dT%H:%M:%SZ")
                 self.ds.writeJSONEvent(log, JSON_field_mappings = self.JSON_field_mappings, flatten = False)
 
         self.ds.set_state(self.state_dir, self.current_run)
