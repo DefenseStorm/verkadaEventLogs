@@ -29,6 +29,11 @@ class integration(object):
         'occurred' : 'timestamp'
     }
 
+    def verkada_getCameras(self):
+        response = self.verkada_request('/cameras')
+        r_json = response.json()
+        return r_json['cameras']
+
     def verkada_getEvents(self):
         pagesize = 10
         total_events = []
@@ -92,6 +97,11 @@ class integration(object):
         if self.last_run == None:
             self.last_run = self.current_run - (86400 * 30)
 
+        cameras_list = self.verkada_getCameras()
+        cameras = {} 
+        for camera in cameras_list:
+            cameras[camera['camera_id']] = camera
+
         events = self.verkada_getEvents()
 
         if events == None:
@@ -99,6 +109,8 @@ class integration(object):
         else:
             self.ds.log('INFO', "Sending {0} event logs".format(len(events)))
             for log in events:
+                log['name'] = cameras[log['camera_id']]['name']
+                log['site'] = cameras[log['camera_id']]['site']
                 self.ds.writeJSONEvent(log, JSON_field_mappings = self.JSON_field_mappings, flatten = False)
 
         self.ds.set_state(self.state_dir, self.current_run)
