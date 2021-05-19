@@ -111,7 +111,7 @@ class integration(object):
             for log in events:
                 log['name'] = cameras[log['camera_id']]['name']
                 log['site'] = cameras[log['camera_id']]['site']
-                log['message'] = log['name'] + " - " + log[notification_type]
+                log['message'] = log['name'] + " - " + log['notification_type']
                 self.ds.writeJSONEvent(log, JSON_field_mappings = self.JSON_field_mappings, flatten = False)
 
         self.ds.set_state(self.state_dir, self.current_run)
